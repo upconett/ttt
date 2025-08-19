@@ -8,7 +8,7 @@ Simple Tic Tac Toe game written in C
 To build and run ASAP, do:
 ```shell
 source ./scripts/build-tui.sh
-ttt
+./ttt
 ```
 
 There are 2 versions of game UI:
@@ -24,5 +24,5 @@ source ./scripts/build-cli.sh
 source ./scripts/build-tui.sh
 
 # run
-ttt
+./ttt
 ```
