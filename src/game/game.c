@@ -4,6 +4,18 @@
 #include "game/game.h"
 
 
+#pragma region win_row 
+
+short in_win_row(struct win_row* wr, short x, short y) {
+    if (wr->p1.x == x && wr->p1.y == y) return 1;
+    if (wr->p2.x == x && wr->p2.y == y) return 1;
+    if (wr->p3.x == x && wr->p3.y == y) return 1;
+    return 0;
+}
+
+#pragma endregion
+
+
 #pragma region game_data
 
 struct game_data* create_game_data() {
@@ -71,3 +83,31 @@ char determine_winner(struct field* f) {
 }
 
 #pragma endregion
+
+struct win_row get_win_row(struct field* f) {
+    char wnr;
+    struct win_row wr;
+    for (int i = 0; i < 3; i++) {
+        if (horizontal_win_line(&wnr, f, i)) {
+            wr.p1 = (struct pos) {0, i};
+            wr.p2 = (struct pos) {1, i};
+            wr.p3 = (struct pos) {2, i};
+        }
+        if (vertical_win_line(&wnr, f, i)) {
+            wr.p1 = (struct pos) {i, 0};
+            wr.p2 = (struct pos) {i, 1};
+            wr.p3 = (struct pos) {i, 2};
+        }
+    }
+    if (diagonal_win_left(&wnr, f)) {
+        wr.p1 = (struct pos) {0, 0};
+        wr.p2 = (struct pos) {1, 1};
+        wr.p3 = (struct pos) {2, 2};
+    }
+    if (diagonal_win_right(&wnr, f)) {
+        wr.p1 = (struct pos) {0, 2};
+        wr.p2 = (struct pos) {1, 1};
+        wr.p3 = (struct pos) {2, 0};
+    }
+    return wr;
+}

@@ -63,6 +63,22 @@ void print_field(struct field* f, struct pos* cur, int col, int row) {
     }
 }
 
+void print_field_win(struct field* f, struct pos* cur, struct win_row* wr, int col, int row) {
+    print_field(f, cur, col, row);
+
+    attron(COLOR_PAIR(2));
+
+    row++;
+    move(col+wr->p1.x, row+wr->p1.y*2);
+    printw("%c", cell_at(f, wr->p1.x, wr->p1.y));
+    move(col+wr->p2.x, row+wr->p2.y*2);
+    printw("%c", cell_at(f, wr->p2.x, wr->p2.y));
+    move(col+wr->p3.x, row+wr->p3.y*2);
+    printw("%c", cell_at(f, wr->p3.x, wr->p3.y));
+
+    attroff(COLOR_PAIR(2));
+}
+
 void render_ui(struct game_data* d, struct pos* cur) {
     move(1, 1); print_title();
     print_field(d->field, cur, 3, 1);
@@ -73,9 +89,14 @@ void render_ui(struct game_data* d, struct pos* cur) {
     refresh();
 }
 
-void render_ui_and_winner(struct game_data* d, char winner) {
+void render_ui_and_winner(struct game_data* d, struct win_row* wr, char winner) {
     struct pos cur = {-2, -2};
-    render_ui(d, &cur);
+    move(1, 1); print_title();
+    print_field_win(d->field, &cur, wr, 3, 1);
+    move(3, 10); print_movement();
+    move(4, 10); print_interract();
+    move(5, 10); print_exit();
+    move(7, 1); print_turn(d->current_player);
     move(7, 1); print_winner(winner);
     move(9, 1); print_press_any_key();
     refresh();
@@ -233,7 +254,8 @@ void run_game() {
         pass_turn(d);
         winner = determine_winner(d->field);
         if (winner != '\0') {
-            render_ui_and_winner(d, winner);
+            struct win_row wr = get_win_row(d->field);
+            render_ui_and_winner(d, &wr, winner);
             cbreak(); getch();
             break;
         }

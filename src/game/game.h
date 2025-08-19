@@ -14,10 +14,19 @@ struct game_data {
     short turn_num;
 };
 
+struct win_row {
+    struct pos p1;
+    struct pos p2;
+    struct pos p3;
+};
+
+short in_win_row(struct win_row* wr, short x, short y);
+
 struct game_data* create_game_data();
 void destroy_game_data(struct game_data*);
 
 char determine_winner(struct field* f);
+struct win_row get_win_row(struct field* f);
 
 
 #endif
