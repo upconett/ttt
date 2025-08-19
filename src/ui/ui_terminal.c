@@ -10,7 +10,7 @@ void scan_minus_one(struct pos* p) {
     p->x--; p->y--;
 }
 
-void get_pos_input(struct game_data* d, struct pos* p) {
+void input_and_render(struct game_data* d, struct pos* p) {
     printf("Turn of '%c': ", d->current_player);
     scan_minus_one(p);
 
@@ -63,7 +63,7 @@ void run_game() {
 
     int c = 0;
     for (; c < 9; c++) {
-        get_pos_input(d, &current_pos);
+        input_and_render(d, &current_pos);
         set_cell(d->field, current_pos, d->current_player);
         pass_turn(d);
         render_field(d->field);

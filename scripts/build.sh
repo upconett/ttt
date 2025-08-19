@@ -6,7 +6,7 @@ INCLUDE_DIR=src
 MAIN=src/main.c
 FIELD=src/field/field.c
 GAME=src/game/game.c
-UI=src/ui/ui_terminal.c
+UI=src/ui/ui_ncurses.c
 
 OUTPUT=build/main
 
