@@ -1,8 +1,8 @@
-# TTT
-Tic Tac Toe
-
----
+![gameplay screenshot XD](screenshot.png)
+<div style="text-align: center">
+<h1>TTT</h1>
 Simple Tic Tac Toe game written in C
+</div>
 
 ## Build & Run
 To build and run ASAP, do:
