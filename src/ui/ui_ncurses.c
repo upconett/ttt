@@ -117,11 +117,11 @@ void print_title() {
 
 void print_movement() {
     printw("move with ");
-    attron(COLOR_PAIR(2)); printw("arrows"); attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(1)); printw("arrows"); attroff(COLOR_PAIR(1));
     printw(", ");
-    attron(COLOR_PAIR(2)); printw("wasd "); attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(1)); printw("wasd "); attroff(COLOR_PAIR(1));
     printw("or ");
-    attron(COLOR_PAIR(2)); printw("hjkl"); attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(1)); printw("hjkl"); attroff(COLOR_PAIR(1));
 }
 
 void print_interract() {
