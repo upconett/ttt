@@ -32,3 +32,7 @@ void fill_with_char(struct field* f, const char c) {
 char cell_at(struct field* f, short x, short y) {
     return f->cells[x][y];
 }
+
+void set_cell(struct field* f, struct pos p, char c) {
+    f->cells[p.x][p.y] = c;
+}
