@@ -1,7 +1,7 @@
 ![gameplay screenshot XD](screenshot.png)
-<div style="text-align: center">
+<div align="center">
 <h1>TTT</h1>
-Simple Tic Tac Toe game written in C
+<p>Simple Tic Tac Toe game written in C</p">
 </div>
 
 ## Build & Run
